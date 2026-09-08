@@ -42,6 +42,12 @@ function setGauge(id, value) {
   $(id).style.setProperty('--pct', Math.max(0, Math.min(100, value || 0)));
 }
 
+function setHealth(id, value, warning = 75, critical = 90) {
+  const element = $(id);
+  element.classList.toggle('warn', value >= warning && value < critical);
+  element.classList.toggle('bad', value >= critical);
+}
+
 function drawCPUChart() {
   const canvas = $('cpu-chart');
   const rect = canvas.getBoundingClientRect();
@@ -53,19 +59,22 @@ function drawCPUChart() {
   context.scale(ratio, ratio);
   const width = rect.width;
   const height = rect.height;
-  const padX = 22;
+  const padX = 0;
   const padY = 16;
 
   context.clearRect(0, 0, width, height);
   context.strokeStyle = '#d9d9fa';
+  context.fillStyle = '#696969';
+  context.font = '9px "DM Mono", monospace';
   context.lineWidth = 1;
   context.setLineDash([2, 4]);
-  for (let index = 1; index < 4; index++) {
-    const y = padY + (height - padY * 2) * index / 4;
+  for (const threshold of [80, 50]) {
+    const y = height - padY - (height - padY * 2) * threshold / 100;
     context.beginPath();
     context.moveTo(padX, y);
     context.lineTo(width - padX, y);
     context.stroke();
+    context.fillText(`${threshold}%`, padX + 2, y - 4);
   }
   context.setLineDash([]);
   if (cpuHistory.length < 2) return;
@@ -77,7 +86,9 @@ function drawCPUChart() {
     const y = height - padY - (height - padY * 2) * Math.max(0, Math.min(100, value)) / 100;
     if (index === 0) context.moveTo(x, y); else context.lineTo(x, y);
   });
-  context.strokeStyle = '#0000db';
+  const latest = cpuHistory[cpuHistory.length - 1] || 0;
+  const lineColor = latest >= 90 ? '#bc0019' : latest >= 75 ? '#c56700' : '#0000db';
+  context.strokeStyle = lineColor;
   context.lineWidth = 2;
   context.stroke();
 
@@ -148,16 +159,25 @@ function update(data) {
   $('memory-pct').textContent = `${num(host.memory_used_pct)}%`;
   $('memory-detail').textContent = `${bytes(host.memory_used_bytes)} / ${bytes(host.memory_total_bytes)}`;
   setGauge('memory-gauge', host.memory_used_pct);
+  setHealth('memory-gauge', Number(host.memory_used_pct || 0));
+  const diskFree = Math.max(0, Number(host.disk_total_bytes || 0) - Number(host.disk_used_bytes || 0));
   $('disk-pct').textContent = `${num(host.disk_used_pct)}%`;
-  $('disk-detail').textContent = `${bytes(host.disk_used_bytes)} / ${bytes(host.disk_total_bytes)}`;
+  $('disk-detail').textContent = `${bytes(host.disk_used_bytes)} / ${bytes(diskFree)}`;
   setGauge('disk-gauge', host.disk_used_pct);
+  setHealth('disk-gauge', Number(host.disk_used_pct || 0), 70, 85);
+  const swapTotal = Number(host.swap_total_bytes || 0);
+  const swap = Number(host.swap_used_pct || 0);
+  $('swap-pct').textContent = swapTotal ? `${fixed(swap)}%` : 'off';
+  $('swap-detail').textContent = swapTotal ? `${bytes(host.swap_used_bytes)} / ${bytes(swapTotal)}` : 'not configured';
   const cpu = Number(host.cpu_used_pct || 0);
   $('cpu-pct').textContent = `${fixed(cpu)}%`;
+  setHealth('cpu-pct', cpu);
   cpuHistory.push(cpu);
   if (cpuHistory.length > 31) cpuHistory.shift();
   drawCPUChart();
   $('load').textContent = Number(host.load_1m || 0).toFixed(2);
-  $('uptime').textContent = duration(host.uptime_seconds);
+  $('uptime').textContent = duration(performance.node_uptime_seconds ?? host.uptime_seconds);
+  $('pm2-restarts').textContent = performance.pm2_restarts !== undefined ? num(performance.pm2_restarts) : '—';
   $('epochs-validated').textContent = performance.epochs_validated !== undefined ? num(performance.epochs_validated) : '—';
   $('epochs-proposed').textContent = performance.epochs_proposed !== undefined ? num(performance.epochs_proposed) : '—';
 

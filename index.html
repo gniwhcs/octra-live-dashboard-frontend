@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>schwing's node</title>
   <link rel="icon" href="static/logo.svg?v=1" type="image/svg+xml">
-  <link rel="stylesheet" href="static/style.css?v=12">
+  <link rel="stylesheet" href="static/style.css?v=17">
 </head>
 <body>
   <div class="noise"></div>
@@ -42,6 +42,8 @@
         <div class="reward-stat"><dt>rewards collected</dt><dd><span id="total-rewards">—</span> OCT</dd><small>validator rewards only</small></div>
         <div><dt>bonded stake</dt><dd id="validator-bond">—</dd><small>effective voting power <span id="validator-weight">—</span></small></div>
         <div><dt>quorum / set</dt><dd><span id="validator-quorum">—</span> / <span id="validator-set-size">—</span></dd><small>finalization threshold</small></div>
+        <div><dt>epochs validated</dt><dd id="epochs-validated">—</dd><small>finalized by this node</small></div>
+        <div><dt>as proposer</dt><dd id="epochs-proposed">—</dd><small>epochs proposed</small></div>
       </dl>
     </section>
 
@@ -53,10 +55,10 @@
           <div class="gauge"><div class="gauge-ring" id="disk-gauge"><strong id="disk-pct">—</strong></div><span>DISK</span><small id="disk-detail">—</small></div>
         </div>
         <div class="host-foot">
-          <span>load <b id="load">—</b></span>
-          <span>uptime <b id="uptime">—</b></span>
-          <span>epochs validated <b id="epochs-validated">—</b></span>
-          <span>as proposer <b id="epochs-proposed">—</b></span>
+          <span>1m load average <b id="load">—</b></span>
+          <span>node uptime <b id="uptime">—</b></span>
+          <span>swap usage <b id="swap-pct">—</b><small id="swap-detail">—</small></span>
+          <span>pm2 restarts <b id="pm2-restarts">—</b></span>
         </div>
         <div class="cpu-graph">
           <div class="cpu-graph-head"><div><span>CPU USAGE</span><small>rolling 60-second utilization</small></div><strong id="cpu-pct">—</strong></div>
@@ -74,6 +76,6 @@
 
     <footer><span>OCTRA LITE NODE · LIVE TELEMETRY</span><span>REFRESH <b>2S</b></span></footer>
   </main>
-  <script src="static/script.js?v=13"></script>
+  <script src="static/script.js?v=18"></script>
 </body>
 </html>
