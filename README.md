@@ -29,11 +29,3 @@ static/
 The frontend requests `GET /api/snapshot` from the same origin every two seconds. A compatible backend must return the live snapshot consumed by `static/script.js`.
 
 To use a separate API origin, update the URL in the `refresh()` function in `static/script.js` and configure CORS on that API.
-
-## Local preview
-
-```sh
-python3 -m http.server 8000
-```
-
-The layout will load at `http://localhost:8000`; live values require the snapshot API.
