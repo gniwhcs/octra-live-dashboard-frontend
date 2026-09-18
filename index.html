@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>schwing's node</title>
   <link rel="icon" href="static/logo.svg?v=1" type="image/svg+xml">
-  <link rel="stylesheet" href="static/style.css?v=19">
+  <link rel="stylesheet" href="static/style.css?v=20">
 </head>
 <body>
   <div class="noise"></div>
@@ -32,7 +32,7 @@
       </div>
       <div class="sync-card">
         <div class="sync-ring" id="sync-ring"><div><strong id="peer-count">—</strong><small>peers</small></div></div>
-        <div><p id="sync-label">validator status</p><strong id="sync-state">checking</strong><small id="head-lag">reading validator set</small></div>
+        <div class="sync-copy"><p id="sync-label">validator status</p><strong id="sync-state">checking</strong><small id="head-lag">reading validator set</small><div class="sync-quorum"><span>quorum / set</span><strong><span id="validator-quorum">—</span> / <span id="validator-set-size">—</span></strong><small>finalization threshold</small></div></div>
       </div>
     </section>
 
@@ -41,7 +41,6 @@
       <dl>
         <div class="reward-stat"><dt>rewards collected</dt><dd><span id="total-rewards">—</span> OCT</dd><small>validator rewards only · <span id="reward-freshness">updating</span></small></div>
         <div><dt>bonded stake</dt><dd id="validator-bond">—</dd><small>effective voting power <span id="validator-weight">—</span></small></div>
-        <div><dt>quorum / set</dt><dd><span id="validator-quorum">—</span> / <span id="validator-set-size">—</span></dd><small>finalization threshold</small></div>
         <div><dt>epochs validated</dt><dd id="epochs-validated">—</dd><small>finalized by this node</small></div>
         <div><dt>as proposer</dt><dd id="epochs-proposed">—</dd><small>epochs proposed</small></div>
       </dl>
@@ -74,7 +73,7 @@
       <article class="kpi"><div class="kpi-head"><span>PEAK TPS</span><i class="amber"></i></div><strong id="peak-tps">—</strong><small id="epoch-time">— epoch execution</small></article>
     </section>
 
-    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">7faf3fd62cb1</b> · UPDATED <time id="source-updated" datetime="2026-09-18T14:05:31Z">2026-09-18T14:05:31Z</time></span><span>REFRESH <b>2S</b></span></footer>
+    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">ae1bcdb5aa7f</b> · UPDATED <time id="source-updated" datetime="2026-09-18T14:14:51Z">2026-09-18T14:14:51Z</time></span><span>REFRESH <b>2S</b></span></footer>
   </main>
   <script src="static/script.js?v=19"></script>
 </body>
