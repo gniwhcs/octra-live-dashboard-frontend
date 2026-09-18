@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>schwing's node</title>
   <link rel="icon" href="static/logo.svg?v=1" type="image/svg+xml">
-  <link rel="stylesheet" href="static/style.css?v=25">
+  <link rel="stylesheet" href="static/style.css?v=26">
 </head>
 <body>
   <div class="noise"></div>
@@ -52,12 +52,10 @@
         <div class="gauges">
           <div class="gauge"><div class="gauge-ring" id="memory-gauge"><strong id="memory-pct">—</strong></div><span>MEMORY</span><small id="memory-detail">—</small></div>
           <div class="gauge"><div class="gauge-ring" id="disk-gauge"><strong id="disk-pct">—</strong></div><span>DISK</span><small id="disk-detail">—</small></div>
-        </div>
-        <div class="host-foot">
-          <span>1m load average <b id="load">—</b></span>
-          <span>node uptime <b id="uptime">—</b></span>
-          <span>swap usage <b id="swap-pct">—</b><small id="swap-detail">—</small></span>
-          <span>pm2 restarts <b id="pm2-restarts">—</b></span>
+          <div class="gauge-stats">
+            <span>1m load average <b id="load">—</b></span>
+            <span>node uptime <b id="uptime">—</b></span>
+          </div>
         </div>
         <div class="cpu-graph">
           <div class="cpu-graph-head"><div><span>CPU USAGE</span><small>rolling 60-second utilization</small></div><strong id="cpu-pct">—</strong></div>
@@ -73,8 +71,8 @@
       <article class="kpi"><div class="kpi-head"><span>PEAK TPS</span><i class="amber"></i></div><strong id="peak-tps">—</strong><small id="epoch-time">— epoch execution</small></article>
     </section>
 
-    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">55cbe17b8966</b> · UPDATED <time id="source-updated" datetime="2026-09-18T15:11:34Z">2026-09-18T15:11:34Z</time></span><span>REFRESH <b>2S</b></span></footer>
+    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">c6725e01326c</b> · UPDATED <time id="source-updated" datetime="2026-09-18T15:20:53Z">2026-09-18T15:20:53Z</time></span><span>REFRESH <b>2S</b></span></footer>
   </main>
-  <script src="static/script.js?v=20"></script>
+  <script src="static/script.js?v=21"></script>
 </body>
 </html>

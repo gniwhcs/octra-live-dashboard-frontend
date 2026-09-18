@@ -171,10 +171,6 @@ function update(data) {
   $('disk-detail').textContent = `${bytes(host.disk_used_bytes)} / ${bytes(diskFree)}`;
   setGauge('disk-gauge', host.disk_used_pct);
   setHealth('disk-gauge', Number(host.disk_used_pct || 0), 70, 85);
-  const swapTotal = Number(host.swap_total_bytes || 0);
-  const swap = Number(host.swap_used_pct || 0);
-  $('swap-pct').textContent = swapTotal ? `${fixed(swap)}%` : 'off';
-  $('swap-detail').textContent = swapTotal ? `${bytes(host.swap_used_bytes)} / ${bytes(swapTotal)}` : 'not configured';
   const cpu = Number(host.cpu_used_pct || 0);
   $('cpu-pct').textContent = `${fixed(cpu)}%`;
   setHealth('cpu-pct', cpu);
@@ -183,7 +179,6 @@ function update(data) {
   drawCPUChart();
   $('load').textContent = Number(host.load_1m || 0).toFixed(2);
   $('uptime').textContent = duration(performance.node_uptime_seconds ?? host.uptime_seconds);
-  $('pm2-restarts').textContent = performance.pm2_restarts !== undefined ? num(performance.pm2_restarts) : '—';
   $('epochs-validated').textContent = performance.epochs_validated !== undefined ? num(performance.epochs_validated) : '—';
   $('epochs-proposed').textContent = performance.epochs_proposed !== undefined ? num(performance.epochs_proposed) : '—';
 
