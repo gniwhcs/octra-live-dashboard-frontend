@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>schwing's node</title>
   <link rel="icon" href="static/logo.svg?v=1" type="image/svg+xml">
-  <link rel="stylesheet" href="static/style.css?v=18">
+  <link rel="stylesheet" href="static/style.css?v=19">
 </head>
 <body>
   <div class="noise"></div>
@@ -39,7 +39,7 @@
     <section class="validator-strip" id="validator-strip">
       <div class="validator-identity"><span class="validator-pulse"></span><div><strong id="validator-status">checking validator membership</strong><small id="voting-status">reading consensus state</small></div></div>
       <dl>
-        <div class="reward-stat"><dt>rewards collected</dt><dd><span id="total-rewards">—</span> OCT</dd><small>validator rewards only</small></div>
+        <div class="reward-stat"><dt>rewards collected</dt><dd><span id="total-rewards">—</span> OCT</dd><small>validator rewards only · <span id="reward-freshness">updating</span></small></div>
         <div><dt>bonded stake</dt><dd id="validator-bond">—</dd><small>effective voting power <span id="validator-weight">—</span></small></div>
         <div><dt>quorum / set</dt><dd><span id="validator-quorum">—</span> / <span id="validator-set-size">—</span></dd><small>finalization threshold</small></div>
         <div><dt>epochs validated</dt><dd id="epochs-validated">—</dd><small>finalized by this node</small></div>
@@ -74,8 +74,8 @@
       <article class="kpi"><div class="kpi-head"><span>PEAK TPS</span><i class="amber"></i></div><strong id="peak-tps">—</strong><small id="epoch-time">— epoch execution</small></article>
     </section>
 
-    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY</span><span>REFRESH <b>2S</b></span></footer>
+    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">7faf3fd62cb1</b> · UPDATED <time id="source-updated" datetime="2026-09-18T14:05:31Z">2026-09-18T14:05:31Z</time></span><span>REFRESH <b>2S</b></span></footer>
   </main>
-  <script src="static/script.js?v=18"></script>
+  <script src="static/script.js?v=19"></script>
 </body>
 </html>

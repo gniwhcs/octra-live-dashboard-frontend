@@ -140,6 +140,10 @@ function update(data) {
   $('voting-status').textContent = consensus.voting ? 'voting enabled · live consensus' : 'voting unavailable';
 
   $('total-rewards').textContent = rewards.total !== undefined ? fixed(rewards.total) : '—';
+  const rewardUpdated = rewards.updated_at ? new Date(rewards.updated_at) : null;
+  const rewardAge = rewardUpdated ? Date.now() - rewardUpdated.getTime() : Infinity;
+  $('reward-freshness').textContent = rewards.complete && rewardAge < 15000 ? 'live' : rewards.updated_at ? 'cached' : 'waiting';
+  if (rewardUpdated) $('total-rewards').title = `Updated ${rewardUpdated.toLocaleString()}`;
   $('epoch').textContent = num(status.current_epoch || root.epoch);
   $('accounts').textContent = num(status.total_accounts);
   $('active-accounts').textContent = `${num(status.active_accounts)} active`;
@@ -213,7 +217,16 @@ function tick() {
   $('clock').textContent = `${new Date().toISOString().slice(11, 19)} UTC`;
 }
 
+function formatSourceUpdated() {
+  const element = $('source-updated');
+  if (!element || !element.dateTime) return;
+  const updated = new Date(element.dateTime);
+  if (Number.isNaN(updated.getTime())) return;
+  element.textContent = `${updated.toISOString().slice(0, 19).replace('T', ' ')} UTC`;
+}
+
 window.addEventListener('resize', drawCPUChart);
+formatSourceUpdated();
 tick();
 setInterval(tick, 1000);
 refresh();
