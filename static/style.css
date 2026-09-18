@@ -12,10 +12,10 @@
 
 /* Full-width host summary with gauges, key stats, and CPU telemetry. */
 .dashboard-grid{display:block;margin-bottom:20px}
-.host-panel{display:grid;grid-template-columns:2fr 1fr;width:100%}
+.host-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
 .host-panel .panel-title{grid-column:1/-1}
-.host-panel .gauges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-right:1px dotted var(--blue);padding:0;align-items:stretch}.host-panel .gauge{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;width:100%;padding:32px 14px}.host-panel .gauge>small{max-width:160px;line-height:1.45;text-align:center;white-space:pre-line}
-.host-panel .gauge-stats{display:grid;grid-template-rows:1fr 1fr;border-left:1px dotted var(--blue);min-width:0}.host-panel .gauge-stats span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:18px 10px;font:11px DM Mono,monospace;color:var(--ink);text-transform:lowercase;text-align:center}.host-panel .gauge-stats span+span{border-top:1px dotted var(--blue)}.host-panel .gauge-stats b{font:500 27px DM Mono,monospace;color:var(--blue)}
+.host-panel .health-gauges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-right:1px dotted var(--blue);align-items:stretch}.host-panel .gauge{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;width:100%;padding:32px 14px}.host-panel .gauge>small{max-width:160px;line-height:1.45;text-align:center;white-space:pre-line}
+.host-panel .gauge-stats{display:grid;grid-template-rows:1fr 1fr;border-right:1px dotted var(--blue);min-width:0}.host-panel .gauge-stats span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:18px 10px;font:11px DM Mono,monospace;color:var(--ink);text-transform:lowercase;text-align:center}.host-panel .gauge-stats span+span{border-top:1px dotted var(--blue)}.host-panel .gauge-stats b{font:500 27px DM Mono,monospace;color:var(--blue)}
 .host-panel .gauge-ring{width:102px;height:102px}
 .cpu-graph{min-width:0;padding:27px 20px 13px;display:flex;flex-direction:column}
 .cpu-graph-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:4px}
@@ -25,7 +25,7 @@
 #cpu-chart{display:block;width:100%;height:125px;margin-top:auto}
 .cpu-axis{display:flex;justify-content:space-between;color:var(--muted);font:9px DM Mono,monospace;padding:2px 0 0}
 @media(max-width:1050px) and (min-width:681px){.host-panel .gauge{padding:28px 8px}.host-panel .gauge-ring{width:82px;height:82px}.host-panel .gauge-stats b{font-size:22px}.cpu-graph{padding:24px 12px 12px}.cpu-graph-head{align-items:flex-end}.cpu-graph-head strong{font-size:21px}#cpu-chart{height:110px}}
-@media(max-width:680px){.host-panel{grid-template-columns:1fr}.host-panel .panel-title{grid-column:auto}.host-panel .gauges{grid-template-columns:1fr 1fr;border-right:0;border-bottom:1px dotted var(--blue)}.host-panel .gauge{padding:32px 8px}.host-panel .gauge-stats{grid-column:1/-1;grid-template-columns:1fr 1fr;grid-template-rows:1fr;border-left:0;border-top:1px dotted var(--blue)}.host-panel .gauge-stats span+span{border-top:0;border-left:1px dotted var(--blue)}.host-panel .gauge-ring{width:96px;height:96px}.cpu-graph{padding:20px 16px 12px}.cpu-graph-head strong{font-size:23px}#cpu-chart{height:125px}}
+@media(max-width:680px){.host-panel{grid-template-columns:1fr}.host-panel .panel-title{grid-column:auto}.host-panel .health-gauges{border-right:0;border-bottom:1px dotted var(--blue)}.host-panel .gauge{padding:32px 8px}.host-panel .gauge-stats{grid-template-columns:1fr 1fr;grid-template-rows:1fr;border-right:0;border-bottom:1px dotted var(--blue)}.host-panel .gauge-stats span+span{border-top:0;border-left:1px dotted var(--blue)}.host-panel .gauge-ring{width:96px;height:96px}.cpu-graph{padding:20px 16px 12px}.cpu-graph-head strong{font-size:23px}#cpu-chart{height:125px}}
 
 .gauge-ring.warn{background:conic-gradient(var(--warn) calc(var(--pct)*1%),#fff1dc 0)}
 .gauge-ring.bad{background:conic-gradient(var(--bad) calc(var(--pct)*1%),#ffe1e5 0)}
