@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>schwing's node</title>
   <link rel="icon" href="static/logo.svg?v=1" type="image/svg+xml">
-  <link rel="stylesheet" href="static/style.css?v=32">
+  <link rel="stylesheet" href="static/style.css?v=33">
 </head>
 <body>
   <div class="noise"></div>
@@ -30,10 +30,6 @@
         <div class="epoch-row"><span class="epoch-label">epoch</span><strong id="epoch">—</strong></div>
         <div class="epoch-telemetry">
           <div class="cadence-row"><span>recent cadence</span><strong id="recent-cadence">—</strong><small>median / recent epochs</small></div>
-          <div class="participation-row">
-            <div><span>participation marks</span><strong id="participation-count">— / 32</strong></div>
-            <div class="participation-marks" id="participation-marks" aria-label="Recent validator participation marks"></div>
-          </div>
         </div>
         <div class="identity"><span id="address">loading node identity…</span><button id="copy" title="Copy address">copy</button></div>
       </div>
@@ -55,7 +51,13 @@
 
     <section class="dashboard-grid">
       <article class="panel host-panel" id="system">
-        <div class="panel-title"><div><span>HOST HEALTH</span><small>octra-node</small></div></div>
+        <div class="panel-title">
+          <div><span>HOST HEALTH</span><small>octra-node</small></div>
+          <div class="participation-row host-participation">
+            <div><span>participation marks</span><strong id="participation-count">— / 32</strong></div>
+            <div class="participation-marks" id="participation-marks" aria-label="Recent validator participation marks"></div>
+          </div>
+        </div>
         <div class="health-gauges">
           <div class="gauge"><div class="gauge-ring" id="memory-gauge"><strong id="memory-pct">—</strong></div><span>MEMORY</span><small id="memory-detail">—</small></div>
           <div class="gauge"><div class="gauge-ring" id="disk-gauge"><strong id="disk-pct">—</strong></div><span>DISK</span><small id="disk-detail">—</small></div>
@@ -78,7 +80,7 @@
       <article class="kpi"><div class="kpi-head"><span>PEAK TPS</span><i class="amber"></i></div><strong id="peak-tps">—</strong><small id="epoch-time">— epoch execution</small></article>
     </section>
 
-    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">489548cabc15</b> · UPDATED <time id="source-updated" datetime="2026-09-22T16:25:21Z">2026-09-22T16:25:21Z</time></span><span>REFRESH <b>2S</b></span></footer>
+    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">8a54a44a6266</b> · UPDATED <time id="source-updated" datetime="2026-09-22T16:31:36Z">2026-09-22T16:31:36Z</time></span><span>REFRESH <b>2S</b></span></footer>
   </main>
   <script src="static/script.js?v=22"></script>
 </body>
