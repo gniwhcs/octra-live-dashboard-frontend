@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>schwing's node</title>
   <link rel="icon" href="static/logo.svg?v=1" type="image/svg+xml">
-  <link rel="stylesheet" href="static/style.css?v=34">
+  <link rel="stylesheet" href="static/style.css?v=35">
 </head>
 <body>
   <div class="noise"></div>
@@ -31,7 +31,6 @@
         <div class="epoch-telemetry">
           <div class="cadence-row"><span>recent cadence</span><strong id="recent-cadence">—</strong><small>median / recent epochs</small></div>
         </div>
-        <div class="identity"><span id="address">loading node identity…</span><button id="copy" title="Copy address">copy</button></div>
       </div>
       <div class="sync-card">
         <div class="sync-ring" id="sync-ring"><div><strong id="peer-count">—</strong><small>peers</small></div></div>
@@ -40,7 +39,11 @@
     </section>
 
     <section class="validator-strip" id="validator-strip">
-      <div class="validator-identity"><span class="validator-pulse"></span><div><strong id="validator-status">checking validator membership</strong><small id="voting-status">reading consensus state</small></div></div>
+      <div class="validator-identity">
+        <span class="validator-pulse"></span>
+        <div class="validator-status-copy"><strong id="validator-status">checking validator membership</strong><small id="voting-status">reading consensus state</small></div>
+        <div class="validator-address"><span id="address">loading node identity…</span><button id="copy" title="Copy address">copy</button></div>
+      </div>
       <dl>
         <div class="reward-stat"><dt>rewards collected</dt><dd><span id="total-rewards">—</span> OCT</dd><small>validator rewards only · <span id="reward-freshness">updating</span></small></div>
         <div><dt>bonded stake</dt><dd id="validator-bond">—</dd><small>effective voting power <span id="validator-weight">—</span></small></div>
@@ -80,7 +83,7 @@
       <article class="kpi"><div class="kpi-head"><span>PEAK TPS</span><i class="amber"></i></div><strong id="peak-tps">—</strong><small id="epoch-time">— epoch execution</small></article>
     </section>
 
-    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">f17c05555dee</b> · UPDATED <time id="source-updated" datetime="2026-09-22T16:35:38Z">2026-09-22T16:35:38Z</time></span><span>REFRESH <b>2S</b></span></footer>
+    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">27e2be8ddcd6</b> · UPDATED <time id="source-updated" datetime="2026-09-22T16:46:08Z">2026-09-22T16:46:08Z</time></span><span>REFRESH <b>2S</b></span></footer>
   </main>
   <script src="static/script.js?v=23"></script>
 </body>
