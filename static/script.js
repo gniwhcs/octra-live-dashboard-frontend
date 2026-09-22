@@ -188,7 +188,7 @@ function update(data) {
   syncLabel.textContent = activeMember ? '' : 'network sync';
   syncLabel.hidden = Boolean(activeMember);
   $('sync-state').textContent = activeMember && round !== undefined ? `ROUND ${num(round)}` : scheduledMember ? 'SCHEDULED' : lag <= 2 ? 'SYNCHRONIZED' : 'CATCHING UP';
-  $('head-lag').textContent = activeMember ? `${stage} · ${roundPeers} participants · ${peerCount} peers` : lag ? `${lag} epoch behind head` : 'at network head';
+  $('head-lag').textContent = activeMember ? `${stage} · ${roundPeers} participants` : lag ? `${lag} epoch behind head` : 'at network head';
   const quorumCoverage = Number(validator.quorum || 0) ? peerCount / Number(validator.quorum) * 100 : peerCount ? 100 : 12;
   $('sync-ring').style.setProperty('--pct', Math.min(100, quorumCoverage));
 

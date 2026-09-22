@@ -31,5 +31,5 @@
 .gauge-ring.bad{background:conic-gradient(var(--bad) calc(var(--pct)*1%),#ffe1e5 0)}
 .cpu-graph-head strong.warn{color:var(--warn)}
 .cpu-graph-head strong.bad{color:var(--bad)}
-.host-participation{flex:0 1 720px;width:min(62%,720px);margin:0 0 0 auto}.host-participation>div:first-child{margin-bottom:0}.host-participation .participation-marks{margin-top:9px}
+.host-participation{flex:0 0 50%;width:50%;margin:0 0 0 auto;font:10px DM Mono,monospace}.host-participation>div:first-child{margin-bottom:0}.host-participation span,.host-participation strong{font:10px DM Mono,monospace}.host-participation .participation-marks{margin-top:9px}
 @media(max-width:680px){.host-panel .panel-title{align-items:stretch;flex-direction:column;gap:18px}.host-participation{width:100%;margin:0;flex:auto}}
