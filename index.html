@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>schwing's node</title>
   <link rel="icon" href="static/logo.svg?v=1" type="image/svg+xml">
-  <link rel="stylesheet" href="static/style.css?v=31">
+  <link rel="stylesheet" href="static/style.css?v=32">
 </head>
 <body>
   <div class="noise"></div>
@@ -28,6 +28,13 @@
         <div class="eyebrow" id="role-label">validator / devnet</div>
         <h2>schwing's<br>node</h2>
         <div class="epoch-row"><span class="epoch-label">epoch</span><strong id="epoch">—</strong></div>
+        <div class="epoch-telemetry">
+          <div class="cadence-row"><span>recent cadence</span><strong id="recent-cadence">—</strong><small>median / recent epochs</small></div>
+          <div class="participation-row">
+            <div><span>participation marks</span><strong id="participation-count">— / 32</strong></div>
+            <div class="participation-marks" id="participation-marks" aria-label="Recent validator participation marks"></div>
+          </div>
+        </div>
         <div class="identity"><span id="address">loading node identity…</span><button id="copy" title="Copy address">copy</button></div>
       </div>
       <div class="sync-card">
@@ -71,8 +78,8 @@
       <article class="kpi"><div class="kpi-head"><span>PEAK TPS</span><i class="amber"></i></div><strong id="peak-tps">—</strong><small id="epoch-time">— epoch execution</small></article>
     </section>
 
-    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">cbd5ad4c448e</b> · UPDATED <time id="source-updated" datetime="2026-09-18T15:43:09Z">2026-09-18T15:43:09Z</time></span><span>REFRESH <b>2S</b></span></footer>
+    <footer><span>OCTRA LITE NODE · LIVE TELEMETRY · SOURCE <b id="source-commit">489548cabc15</b> · UPDATED <time id="source-updated" datetime="2026-09-22T16:25:21Z">2026-09-22T16:25:21Z</time></span><span>REFRESH <b>2S</b></span></footer>
   </main>
-  <script src="static/script.js?v=21"></script>
+  <script src="static/script.js?v=22"></script>
 </body>
 </html>

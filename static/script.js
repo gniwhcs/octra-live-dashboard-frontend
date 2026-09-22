@@ -38,6 +38,32 @@ function duration(seconds) {
   return days ? `${days}d ${hours}h` : hours ? `${hours}h ${minutes}m` : `${minutes}m`;
 }
 
+function renderParticipation(network) {
+  const container = $('participation-marks');
+  const low = Number(network.participation_low_epoch);
+  const high = Number(network.participation_high_epoch);
+  const marks = new Set((network.participation_marks || []).map(Number));
+  const total = Number(network.participation_total || 32);
+  const count = Number(network.participation_count);
+  $('participation-count').textContent = Number.isFinite(count) ? `${num(count)} / ${num(total)}` : `— / ${num(total)}`;
+  container.replaceChildren();
+  if (!Number.isFinite(low) || !Number.isFinite(high) || high < low) {
+    for (let index = 0; index < total; index++) {
+      const mark = document.createElement('i');
+      mark.className = 'unknown';
+      container.append(mark);
+    }
+    return;
+  }
+  for (let epoch = low; epoch <= high; epoch++) {
+    const mark = document.createElement('i');
+    const participated = marks.has(epoch);
+    mark.className = participated ? 'marked' : 'missed';
+    mark.title = `Epoch ${num(epoch)} · ${participated ? 'participated' : 'no committed mark'}`;
+    container.append(mark);
+  }
+}
+
 function setGauge(id, value) {
   $(id).style.setProperty('--pct', Math.max(0, Math.min(100, value || 0)));
 }
@@ -112,6 +138,7 @@ function update(data) {
   const enrollment = data.enrollment || {};
   const rewards = data.rewards || {};
   const price = data.price || {};
+  const network = data.network || {};
   const performance = data.performance || {};
   const consensus = data.peers || {};
   const diagnostics = consensus.p2p_diagnostics || {};
@@ -145,6 +172,9 @@ function update(data) {
   $('reward-freshness').textContent = rewards.complete && rewardAge < 15000 ? 'live' : rewards.updated_at ? 'cached' : 'waiting';
   if (rewardUpdated) $('total-rewards').title = `Updated ${rewardUpdated.toLocaleString()}`;
   $('epoch').textContent = num(status.current_epoch || root.epoch);
+  const cadence = Number(network.recent_cadence_seconds);
+  $('recent-cadence').textContent = Number.isFinite(cadence) && cadence > 0 ? `${cadence.toFixed(1)} s` : '—';
+  renderParticipation(network);
   $('accounts').textContent = num(status.total_accounts);
   $('active-accounts').textContent = `${num(status.active_accounts)} active`;
   $('tx-index').textContent = num(status.txid_hi);
