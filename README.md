@@ -7,7 +7,7 @@ Frontend-only source for the live Octra validator dashboard at `octra-node.exe.x
 ## Included
 
 - Responsive dashboard markup
-- Live validator, staking, rewards, account, transaction, host, and consensus UI
+- Live validator, staking, lifetime rewards, account, transaction, host, and consensus UI
 - CPU utilization chart
 - OCT/USD price ticker
 - Live reward freshness state and deployed source revision metadata
