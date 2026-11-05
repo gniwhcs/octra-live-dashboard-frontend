@@ -147,16 +147,24 @@ function update(data) {
   address = status.validator || root.validator || address;
   $('address').textContent = address || 'unknown identity';
 
-  const activeMember = (validator.validators || []).find(item => item.address === address);
+  const activeSet = (validator.validators || [])
+    .slice()
+    .sort((left, right) => Number(right.weight) - Number(left.weight) || String(left.address).localeCompare(String(right.address)));
+  const activeMember = activeSet.find(item => item.address === address);
   const scheduledMember = ((validator.scheduled || {}).validators || []).find(item => item.address === address);
   const validatorState = activeMember ? 'active' : scheduledMember ? 'scheduled' : 'observer';
+  const weightRank = activeMember ? activeSet.indexOf(activeMember) + 1 : 0;
   const weight = (activeMember || scheduledMember || {}).weight;
 
   $('role-label').textContent = `${validatorState === 'observer' ? 'observer' : `${validatorState} validator`} / devnet`;
   $('validator-status').textContent = activeMember ? 'active consensus validator' : scheduledMember ? `scheduled for epoch ${num((validator.scheduled || {}).activate_epoch)}` : 'observer node';
   $('validator-strip').className = `validator-strip ${validatorState}`;
   $('validator-bond').textContent = enrollment.bond ? `${fixed(Number(enrollment.bond) / 1e6)} OCT` : '—';
-  $('validator-weight').textContent = weight ? `${fixed(Number(weight) / 1e6)} OCT` : '—';
+  const setWeight = activeSet.reduce((total, item) => total + Number(item.weight || 0), 0);
+  $('validator-weight').textContent = weightRank ? `#${weightRank} of ${activeSet.length}` : '—';
+  $('validator-weight').title = weightRank
+    ? `rank ${weightRank} of ${activeSet.length} by voting power · ${fixed(Number(weight) / 1e6)} OCT of ${fixed(setWeight / 1e6)} OCT`
+    : 'not in the active validator set';
   $('validator-set-size').textContent = num(validator.n || (validator.validators || []).length);
   $('validator-quorum').textContent = num(validator.quorum);
 
