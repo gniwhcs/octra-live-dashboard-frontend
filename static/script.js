@@ -23,10 +23,15 @@ function usdPrice(value) {
 
 function bytes(value) {
   const number = Number(value);
-  if (!Number.isFinite(number)) return '—';
-  const units = ['B', 'GB', 'TB'];
-  const index = number > 1e12 ? 2 : number > 1e9 ? 1 : 0;
-  return `${(number / Math.pow(1000, index * 3)).toFixed(index ? 1 : 0)} ${units[index]}`;
+  if (!Number.isFinite(number) || number < 0) return '—';
+  const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+  let index = 0;
+  let scaled = number;
+  while (scaled >= 1000 && index < units.length - 1) {
+    scaled /= 1000;
+    index += 1;
+  }
+  return `${scaled.toFixed(index ? 1 : 0)} ${units[index]}`;
 }
 
 function duration(seconds) {
@@ -198,9 +203,8 @@ function update(data) {
   $('memory-detail').textContent = `${bytes(host.memory_used_bytes)} / ${bytes(host.memory_total_bytes)}`;
   setGauge('memory-gauge', host.memory_used_pct);
   setHealth('memory-gauge', Number(host.memory_used_pct || 0));
-  const diskFree = Math.max(0, Number(host.disk_total_bytes || 0) - Number(host.disk_used_bytes || 0));
   $('disk-pct').textContent = `${num(host.disk_used_pct)}%`;
-  $('disk-detail').textContent = `${bytes(host.disk_used_bytes)} / ${bytes(diskFree)}`;
+  $('disk-detail').textContent = `${bytes(host.disk_used_bytes)} / ${bytes(host.disk_total_bytes)}`;
   setGauge('disk-gauge', host.disk_used_pct);
   setHealth('disk-gauge', Number(host.disk_used_pct || 0), 70, 85);
   const cpu = Number(host.cpu_used_pct || 0);
