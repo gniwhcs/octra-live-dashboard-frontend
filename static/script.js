@@ -183,12 +183,6 @@ function update(data) {
   const cadence = Number(network.recent_cadence_seconds);
   $('recent-cadence').textContent = Number.isFinite(cadence) && cadence > 0 ? `${cadence.toFixed(1)} s` : '—';
   renderParticipation(network);
-  $('accounts').textContent = num(status.total_accounts);
-  $('active-accounts').textContent = `${num(status.active_accounts)} active`;
-  $('tx-index').textContent = num(status.txid_hi);
-  $('last-epoch-txs').textContent = `${num(metrics.last_epoch_txs)} in last epoch`;
-  $('peak-tps').textContent = fixed(metrics.peak_tps);
-  $('epoch-time').textContent = `${fixed(Number(metrics.last_epoch_duration || 0) * 1000)} ms execution`;
 
   const lag = Math.max(0, Number(status.current_epoch || 0) - Number(status.head_epoch || 0));
   $('peer-count').textContent = num(peerCount);
